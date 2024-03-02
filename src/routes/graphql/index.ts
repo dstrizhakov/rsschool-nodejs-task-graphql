@@ -1,15 +1,12 @@
 import { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { createGqlResponseSchema, gqlResponseSchema } from './schemas.js';
-import { GraphQLSchema, graphql } from 'graphql';
-
-import userRoutes from './modules/user/user.route.js';
-
-
-
+import { graphql, parse, validate } from 'graphql';
+import { graphqlSchema } from './graphqlSchema.js';
+import { rootLoader } from './loaders/rootLoader.js';
+import depthLimit from 'graphql-depth-limit';
 
 const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
   const { prisma } = fastify;
-  fastify.register(userRoutes, { prefix: 'api/users' })
 
   fastify.route({
     url: '/',
@@ -21,8 +18,21 @@ const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
       },
     },
     async handler(req, reply) {
+      const { query, variables } = req.body;
+      const errors = validate(graphqlSchema, parse(query), [depthLimit(5)]);
+      if (errors.length) {
+        return reply.send({errors})
+      }
 
-      return {};
+      return await graphql({
+        schema: graphqlSchema,
+        source: query,
+        variableValues: variables,
+        contextValue: {
+          prisma,
+          loaders: rootLoader(prisma),
+        },
+      });
     },
   });
 };
