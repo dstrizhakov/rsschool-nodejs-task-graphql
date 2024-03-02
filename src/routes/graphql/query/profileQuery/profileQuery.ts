@@ -4,7 +4,7 @@ import { UUIDType } from '../../types/uuid.js';
 import { Profile } from '@prisma/client';
 import { Context } from '../../types/context.js';
 
-export const profileQuery: GraphQLFieldConfigMap<Profile, Context> = {
+export const profileQuery = {
   profile: {
     type: profileObjectType,
     args: {
