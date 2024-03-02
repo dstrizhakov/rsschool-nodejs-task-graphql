@@ -19,7 +19,7 @@ export const profileObjectType = new GraphQLObjectType({
     },
     user: {
       type: userObjectType,
-      resolve: async (source: Profile, context: Context) => {
+      resolve: async (source: Profile, _args, context: Context) => {
         return await context.prisma.user.findUnique({
           where: {
             id: source.userId,
@@ -32,7 +32,7 @@ export const profileObjectType = new GraphQLObjectType({
     },
     memberType: {
       type: memberObjectType,
-      resolve: async (source: Profile, context: Context) => {
+      resolve: async (source: Profile, _args, context: Context) => {
         return await context.loaders.memberTypeLoader.load(source.memberTypeId);
       },
     },

@@ -22,6 +22,10 @@ export const userQuery = {
         where: {
           id: args.id,
         },
+        include: {
+          userSubscribedTo: true,
+          subscribedToUser: true,
+        },
       });
     },
   },
@@ -39,16 +43,19 @@ export const userQuery = {
         new GraphQLList(userObjectType),
       );
 
-      return await context.prisma.user
-        .findMany({
-          include: {
-            userSubscribedTo: 'userSubscribedTo' in fields,
-            subscribedToUser: 'subscribedToUser' in fields,
-          },
-        })
-        .then((users) =>
-          users.forEach((user) => context.loaders.userLoader.prime(user.id, user)),
-        );
+      const userSubscribedTo = 'userSubscribedTo' in fields;
+      const subscribedToUser = 'subscribedToUser' in fields;
+
+      const users = await context.prisma.user.findMany({
+        include: {
+          userSubscribedTo,
+          subscribedToUser,
+        },
+      });
+      users.forEach((user) => {
+        context.loaders.userLoader.prime(user.id, user);
+      });
+      return users;
     },
   },
 };

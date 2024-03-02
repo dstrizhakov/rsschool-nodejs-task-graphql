@@ -11,7 +11,7 @@ import { Context } from '../../types/context.js';
 import { profileObjectType } from '../profileQuery/profileObjectType.js';
 
 export const memberEnumType = new GraphQLEnumType({
-  name: 'MemberEnumType',
+  name: 'MemberTypeId',
   values: {
     basic: {
       value: MemberTypeId.BASIC,
@@ -22,8 +22,8 @@ export const memberEnumType = new GraphQLEnumType({
   },
 });
 
-export const memberObjectType = new GraphQLObjectType<MemberType, Context>({
-  name: 'Member',
+export const memberObjectType = new GraphQLObjectType({
+  name: 'MemberType',
   fields: () => ({
     id: {
       type: memberEnumType,
@@ -36,7 +36,7 @@ export const memberObjectType = new GraphQLObjectType<MemberType, Context>({
     },
     profiles: {
       type: new GraphQLList(profileObjectType),
-      resolve: async (source: MemberType, context: Context) => {
+      resolve: async (source: MemberType, _args, context: Context) => {
         return await context.prisma.profile.findMany({
           where: {
             memberTypeId: source.id,

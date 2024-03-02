@@ -20,17 +20,17 @@ const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
     async handler(req, reply) {
       const { query, variables } = req.body;
       const errors = validate(graphqlSchema, parse(query), [depthLimit(5)]);
-      if (errors.length) {
-        return reply.send({errors})
+      if (errors.length > 0) {
+        return reply.send({ errors });
       }
-
+      const loaders = rootLoader(prisma);
       return await graphql({
         schema: graphqlSchema,
         source: query,
         variableValues: variables,
         contextValue: {
           prisma,
-          loaders: rootLoader(prisma),
+          loaders,
         },
       });
     },
