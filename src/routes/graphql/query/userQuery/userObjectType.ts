@@ -4,7 +4,7 @@ import { profileObjectType } from '../profileQuery/profileObjectType.js';
 import { User } from '@prisma/client';
 import { Context } from '../../types/context.js';
 
-export const userObjectType = new GraphQLObjectType({
+export const userObjectType = new GraphQLObjectType<User, Context>({
   name: 'User',
   fields: () => ({
     id: {
