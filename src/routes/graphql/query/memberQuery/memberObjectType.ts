@@ -6,9 +6,9 @@ import {
   GraphQLObjectType,
 } from 'graphql';
 import { MemberTypeId } from '../../../member-types/schemas.js';
-import { profileObjectType } from '../profileQuery/profileObjectType.js';
 import { MemberType } from '@prisma/client';
 import { Context } from '../../types/context.js';
+import { profileObjectType } from '../profileQuery/profileObjectType.js';
 
 export const memberEnumType = new GraphQLEnumType({
   name: 'MemberEnumType',

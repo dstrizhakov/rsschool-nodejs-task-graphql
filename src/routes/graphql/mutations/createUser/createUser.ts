@@ -18,7 +18,7 @@ export const createUser = {
         type: new GraphQLNonNull(createUserObjectType),
       },
     },
-    resolve: async (source, args: UserInput, context: Context) => {
+    resolve: async (_source, args: UserInput, context: Context) => {
       return await context.prisma.user.create({
         data: args.dto,
       });

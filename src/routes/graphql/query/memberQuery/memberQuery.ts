@@ -1,12 +1,7 @@
-import {
-  GraphQLFieldConfigMap,
-  GraphQLList,
-  GraphQLNonNull,
-  GraphQLObjectType,
-} from 'graphql';
 import { memberEnumType, memberObjectType } from './memberObjectType.js';
 import { MemberType } from '@prisma/client';
 import { Context } from '../../types/context.js';
+import { GraphQLList, GraphQLNonNull } from 'graphql';
 
 export const memberQuery = {
   memberType: {
@@ -16,7 +11,7 @@ export const memberQuery = {
         type: new GraphQLNonNull(memberEnumType),
       },
     },
-    resolve: async (source, args: MemberType, context: Context) => {
+    resolve: async (_source, args: MemberType, context: Context) => {
       return await context.prisma.memberType.findUnique({
         where: {
           id: args.id,
@@ -26,7 +21,7 @@ export const memberQuery = {
   },
   memberTypes: {
     type: new GraphQLList(memberObjectType),
-    resolve: async (source, args, context: Context) => {
+    resolve: async (_source, _args, context: Context) => {
       return await context.prisma.memberType.findMany();
     },
   },

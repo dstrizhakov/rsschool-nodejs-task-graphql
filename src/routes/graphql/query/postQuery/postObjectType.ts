@@ -18,7 +18,7 @@ export const postObjectType = new GraphQLObjectType({
     },
     author: {
       type: userObjectType,
-      resolve: async (source: Post, args, context: Context) => {
+      resolve: async (source: Post, _args, context: Context) => {
         return await context.prisma.user.findUnique({
           where: {
             id: source.authorId,
