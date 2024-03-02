@@ -1,27 +1,17 @@
-import { GraphQLList, GraphQLNonNull, GraphQLResolveInfo } from 'graphql';
+import { GraphQLList, GraphQLNonNull, GraphQLObjectType, GraphQLResolveInfo } from 'graphql';
 import { userObjectType } from './userObjectType.js';
 import { UUIDType } from '../../types/uuid.js';
-import { PrismaClient, User } from '@prisma/client';
-import { DefaultArgs, PrismaClientOptions } from '@prisma/client/runtime/library.js';
-import DataLoader from 'dataloader';
+import { User } from '@prisma/client';
 import {
   parseResolveInfo,
   simplifyParsedResolveInfoFragmentWithType,
   ResolveTree,
 } from 'graphql-parse-resolve-info';
-
-export interface Loaders {
-  userLoader: DataLoader<string, User>;
-}
-
-export interface Context {
-  prisma: PrismaClient<PrismaClientOptions, never, DefaultArgs>;
-  loaders: Loaders;
-}
+import { Context } from '../../types/context.js';
 
 export const userQuery = {
   user: {
-    type: userObjectType,
+    type: userObjectType as GraphQLObjectType<User, Context>,
     args: {
       id: {
         type: new GraphQLNonNull(UUIDType),
