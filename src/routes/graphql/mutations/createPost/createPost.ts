@@ -11,7 +11,7 @@ interface CreatePost {
   };
 }
 
-const createPost = {
+export const createPost = {
   createPost: {
     type: postObjectType,
     args: {
