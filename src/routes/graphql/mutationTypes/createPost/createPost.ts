@@ -1,5 +1,5 @@
 import { GraphQLNonNull } from 'graphql';
-import { postObjectType } from '../../query/postQuery/postObjectType.js';
+import { postObjectType } from '../../queryTypes/postQuery/postObjectType.js';
 import { Context } from '../../types/context.js';
 import { createPostObjectType } from './createPostObjectType.js';
 

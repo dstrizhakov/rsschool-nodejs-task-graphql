@@ -1,7 +1,7 @@
 import { GraphQLNonNull } from 'graphql';
 import { UUIDType } from '../../types/uuid.js';
 import { Context } from '../../types/context.js';
-import { userObjectType } from '../../query/userQuery/userObjectType.js';
+import { userObjectType } from '../../queryTypes/userQuery/userObjectType.js';
 
 interface UnsubscribeFrom {
   userId: string;

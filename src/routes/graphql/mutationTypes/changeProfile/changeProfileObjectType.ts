@@ -1,5 +1,5 @@
 import { GraphQLBoolean, GraphQLInputObjectType, GraphQLInt } from 'graphql';
-import { memberEnumType } from '../../query/memberQuery/memberObjectType.js';
+import { memberEnumType } from '../../queryTypes/memberQuery/memberObjectType.js';
 
 export const changeProfileObjectType = new GraphQLInputObjectType({
   name: 'ChangeProfileInput',

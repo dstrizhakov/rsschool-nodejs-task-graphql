@@ -1,5 +1,5 @@
 import { GraphQLNonNull, GraphQLObjectType } from 'graphql';
-import { userObjectType } from '../../query/userQuery/userObjectType.js';
+import { userObjectType } from '../../queryTypes/userQuery/userObjectType.js';
 import { UUIDType } from '../../types/uuid.js';
 import { Context } from '../../types/context.js';
 

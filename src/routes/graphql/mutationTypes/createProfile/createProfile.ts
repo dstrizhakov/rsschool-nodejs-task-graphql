@@ -1,6 +1,7 @@
 import { GraphQLNonNull } from 'graphql';
-import { profileObjectType } from '../../query/profileQuery/profileObjectType.js';
+import { profileObjectType } from '../../queryTypes/profileQuery/profileObjectType.js';
 import { Context } from '../../types/context.js';
+import {createProfileObjectType} from "./createProfileObjectType.js";
 
 interface CreateProfile {
   dto: {
@@ -16,7 +17,7 @@ export const createProfile = {
     type: profileObjectType,
     args: {
       dto: {
-        type: new GraphQLNonNull(profileObjectType),
+        type: new GraphQLNonNull(createProfileObjectType),
       },
     },
     resolve: async (_source, args: CreateProfile, context: Context) => {

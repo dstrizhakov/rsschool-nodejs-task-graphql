@@ -4,7 +4,7 @@ import { profileQuery } from './profileQuery/profileQuery.js';
 import { memberQuery } from './memberQuery/memberQuery.js';
 import { postQuery } from './postQuery/postQuery.js';
 
-export const query = new GraphQLObjectType({
+export const queryTypes = new GraphQLObjectType({
   name: 'Query',
   fields: {
     ...userQuery,

@@ -1,6 +1,6 @@
 import { GraphQLNonNull } from 'graphql';
 import { Context } from '../../types/context.js';
-import { postObjectType } from '../../query/postQuery/postObjectType.js';
+import { postObjectType } from '../../queryTypes/postQuery/postObjectType.js';
 import { UUIDType } from '../../types/uuid.js';
 import { changePostObjectType } from './changePostObjectType.js';
 
