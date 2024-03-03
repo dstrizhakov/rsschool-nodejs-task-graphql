@@ -1,7 +1,7 @@
 import { GraphQLNonNull } from 'graphql';
-import { userObjectType } from '../../../query/userQuery/userObjectType.js';
-import { Context } from '../../../types/context.js';
-import { UUIDType } from '../../../types/uuid.js';
+import { userObjectType } from '../../query/userQuery/userObjectType.js';
+import { Context } from '../../types/context.js';
+import { UUIDType } from '../../types/uuid.js';
 import { changeUserObjectType } from './changeUserObjectType.js';
 
 interface ChangeUser {
