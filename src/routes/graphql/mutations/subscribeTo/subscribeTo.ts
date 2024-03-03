@@ -1,4 +1,4 @@
-import { GraphQLNonNull } from 'graphql';
+import { GraphQLNonNull, GraphQLObjectType } from 'graphql';
 import { userObjectType } from '../../query/userQuery/userObjectType.js';
 import { UUIDType } from '../../types/uuid.js';
 import { Context } from '../../types/context.js';
@@ -15,23 +15,23 @@ export const subscribeTo = {
       userId: {
         type: new GraphQLNonNull(UUIDType),
       },
-    },
-    authorId: {
-      type: new GraphQLNonNull(UUIDType),
-    },
-  },
-  resolve: async (_source, args: SubscribeTo, context: Context) => {
-    return await context.prisma.user.update({
-      where: {
-        id: args.userId,
+      authorId: {
+        type: new GraphQLNonNull(UUIDType),
       },
-      data: {
-        userSubscribedTo: {
-          create: {
-            authorId: args.authorId,
+    },
+    resolve: async (_source, args: SubscribeTo, context: Context) => {
+      return await context.prisma.user.update({
+        where: {
+          id: args.userId,
+        },
+        data: {
+          userSubscribedTo: {
+            create: {
+              authorId: args.authorId,
+            },
           },
         },
-      },
-    });
+      });
+    },
   },
 };

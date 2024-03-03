@@ -23,6 +23,7 @@ const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
       if (errors.length > 0) {
         return reply.send({ errors });
       }
+      console.log(graphqlSchema);
       const loaders = rootLoader(prisma);
       return await graphql({
         schema: graphqlSchema,
