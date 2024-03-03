@@ -5,7 +5,7 @@ import {
   GraphQLNonNull,
 } from 'graphql';
 import { UUIDType } from '../../types/uuid.js';
-import { memberEnumType } from '../../queryTypes/memberQuery/memberObjectType.js';
+import { memberEnumType } from '../../query/memberQuery/memberObjectType.js';
 
 export const createProfileObjectType = new GraphQLInputObjectType({
   name: 'CreateProfileInput',

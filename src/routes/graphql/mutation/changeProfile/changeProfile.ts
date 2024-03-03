@@ -1,7 +1,7 @@
 import { GraphQLNonNull } from 'graphql';
 import { changeProfileObjectType } from './changeProfileObjectType.js';
 import { UUIDType } from '../../types/uuid.js';
-import { profileObjectType } from '../../queryTypes/profileQuery/profileObjectType.js';
+import { profileObjectType } from '../../query/profileQuery/profileObjectType.js';
 import { Context } from '../../types/context.js';
 
 interface ChangeProfile {

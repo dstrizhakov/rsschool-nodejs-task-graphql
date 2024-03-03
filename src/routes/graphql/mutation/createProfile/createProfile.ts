@@ -1,5 +1,5 @@
 import { GraphQLNonNull } from 'graphql';
-import { profileObjectType } from '../../queryTypes/profileQuery/profileObjectType.js';
+import { profileObjectType } from '../../query/profileQuery/profileObjectType.js';
 import { Context } from '../../types/context.js';
 import {createProfileObjectType} from "./createProfileObjectType.js";
 
