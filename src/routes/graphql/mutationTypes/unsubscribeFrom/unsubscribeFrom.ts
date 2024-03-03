@@ -10,7 +10,7 @@ interface UnsubscribeFrom {
 
 export const unsubscribeFrom = {
   unsubscribeFrom: {
-    type: userObjectType,
+    type: UUIDType,
     args: {
       userId: {
         type: new GraphQLNonNull(UUIDType),
